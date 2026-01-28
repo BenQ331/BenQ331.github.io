@@ -3,8 +3,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0; /* Lekkie tło dla mobilnego wyglądu */
+    font-family: Arial, sans-serif; 
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
@@ -76,4 +75,5 @@ button {
         font-size: 24px; /* Mniejszy tytuł na telefonie */
         text-align: center;
     }
+
 }
