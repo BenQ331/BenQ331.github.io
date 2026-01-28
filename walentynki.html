@@ -1,122 +1,27 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moja Walentynkowa Prośba</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #ff69b4, #ffb6c1);
-            color: white;
-            text-align: center;
-            padding: 50px;
-            min-height: 100vh;
-        }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-        .question {
-            font-size: 1.5em;
-            margin: 30px 0;
-        }
-        button {
-            background: #ff1493;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            margin: 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background 0.3s;
-            position: relative; /* Dla runaway */
-        }
-        button:hover {
-            background: #c71585;
-        }
-        .hearts {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        .heart {
-            position: absolute;
-            color: #ff69b4;
-            font-size: 2em;
-            animation: rise 5s linear infinite;
-            opacity: 1;
-        }
-        @keyframes rise {
-            0% {
-                transform: translateY(100vh);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-        }
-
-        /* Responsywność */
-        @media (max-width: 768px) { /* Telefony i małe tablety */
-            body {
-                padding: 20px;
-            }
-            h1 {
-                font-size: 2em;
-            }
-            .question {
-                font-size: 1.2em;
-            }
-            button {
-                padding: 12px 20px;
-                font-size: 1em;
-                margin: 5px;
-            }
-        }
-        @media (min-width: 769px) { /* Laptopy i większe */
-            /* Wszystko jak domyślnie */
-        }
-    </style>
+    <title>Od Tymikaaa <3</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="hearts" id="hearts"></div>
-    <h1>❤️ Hej, Zuzaaaa! ❤️</h1>
-    <div class="question">Czy chcesz zostać moją walentynką?</div>
-    <button onclick="showYes()">Tak! 💕</button>
-    <button id="noButton" onclick="showNo()">Nie 😢</button>
-    
-    <div id="yes-message" style="display: none; margin-top: 30px; font-size: 1.5em;">
-       JUHUUUU!!! Napisz na instagramie to dogadamy kiedy mam przyjechac <3
+    <div class="container">
+        <img src="love.gif" alt="love" class="love-gif">
+        <h1 id="question">Bedziesz moja walentynka?</h1>
+        <div class="buttons">
+            <button id="yes">TAKKKKK</button>
+            <button id="no">nie</button>
+        </div>
     </div>
-    
-    <script>
-        function showYes() {
-            document.getElementById('yes-message').style.display = 'block';
-        }
-        function showNo() {
-            const button = document.getElementById('noButton');
-            button.style.position = 'absolute';
-            button.style.left = Math.random() * (window.innerWidth - 100) + 'px';
-            button.style.top = Math.random() * (window.innerHeight - 50) + 'px';
-        }
-        // Dodaj animowane serduszka lecące w górę
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + '%'; // Losowa pozycja pozioma
-            heart.style.animationDelay = Math.random() * 5 + 's'; // Losowe opóźnienie
-            document.getElementById('hearts').appendChild(heart);
-            setTimeout(() => heart.remove(), 5000); // Usuń po 5 sekundach
-        }
-        setInterval(createHeart, 1000); // Twórz serduszko co sekundę
-    </script>
+    <div id="yay">
+        <img src="love.gif" alt="love" width="300" height="300">
+        <h3>JUHUUUUU! Napisz na Instagramie Musimy Cos Dogadac <3</h3>
+    </div>
+    <div id="shy">
+        <img src="shy.gif" alt="shy" width="200" height="200">
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
