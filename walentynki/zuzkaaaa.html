@@ -4,7 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Od Tymikaaa <3</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .love-gif {
+            width: 200px;
+            height: 200px;
+            margin: 10px 0;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        button {
+            font-size: 18px;
+            padding: 12px 24px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #yes {
+            background-color: green;
+            color: white;
+        }
+        #no {
+            background-color: red;
+            color: white;
+        }
+        #yay {
+            display: none;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+        }
+        #shy {
+            display: none;
+            text-align: center;
+        }
+        /* Media query dla małych ekranów (telefony) */
+        @media (max-width: 600px) {
+            .love-gif {
+                width: 150px;
+                height: 150px;
+            }
+            .buttons {
+                flex-direction: column;
+            }
+            button {
+                font-size: 16px;
+                padding: 10px 20px;
+                margin: 8px;
+                /* Usunięto width i max-width, aby przycisk mógł się powiększać */
+            }
+            #yay img, #shy img {
+                width: 200px;
+                height: 200px;
+            }
+            #question {
+                font-size: 24px;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -24,44 +103,43 @@
     </div>
     <script>
         let yesButton = document.getElementById("yes");
-let noButton = document.getElementById("no");
-let yayMessage = document.getElementById("yay");
-let yesSize = 20;
-let messages = [
-    "Jestes pewna?? :(", 
-    "A jakbym ladnie poprosill", 
-    "A moze jakies jedzenie?", 
-    "A jakbym dal ci kwiatki?", 
-    "Ladnie Proooszeee", 
-    "PROOOOOSZE", 
-    "Ale :("
-];
-let usedMessages = new Set();
+        let noButton = document.getElementById("no");
+        let yayMessage = document.getElementById("yay");
+        let yesScale = 1;  // Zaczynamy od skali 1 (normalny rozmiar)
+        let messages = [
+            "Jestes pewna?? :(", 
+            "A jakbym ladnie poprosill", 
+            "A moze jakies jedzenie?", 
+            "A jakbym dal ci kwiatki?", 
+            "Ladnie Proooszeee", 
+            "PROOOOOSZE", 
+            "Ale :("
+        ];
+        let usedMessages = new Set();
 
-noButton.addEventListener("click", function() {
-    yesSize *= 1.5; 
-    yesButton.style.fontSize = yesSize + "px";
-    
-    if (usedMessages.size === messages.length) {
-        usedMessages.clear(); 
-    }
-    
-    let availableMessages = messages.filter(msg => !usedMessages.has(msg));
-    let randomMessage = availableMessages[Math.floor(Math.random() * availableMessages.length)];
-    
-    usedMessages.add(randomMessage);
-    noButton.textContent = randomMessage;
-});
+        noButton.addEventListener("click", function() {
+            yesScale *= 1.5;  // Powiększamy skalę o 50% za każdym razem
+            yesButton.style.transform = `scale(${yesScale})`;  // Zamiast font-size, używamy scale
+            
+            if (usedMessages.size === messages.length) {
+                usedMessages.clear(); 
+            }
+            
+            let availableMessages = messages.filter(msg => !usedMessages.has(msg));
+            let randomMessage = availableMessages[Math.floor(Math.random() * availableMessages.length)];
+            
+            usedMessages.add(randomMessage);
+            noButton.textContent = randomMessage;
+        });
 
-yesButton.addEventListener("click", function() {
-    document.querySelector('.container').style.display = "none";  // Dodaj tę linię, aby ukryć początkowy kontener
-    yesButton.style.display = "none";
-    noButton.style.display = "none";
-    yayMessage.style.display = "block";
-    shy.style.display = "none";
-    question.style.display = "none";
-});
+        yesButton.addEventListener("click", function() {
+            document.querySelector('.container').style.display = "none";
+            yesButton.style.display = "none";
+            noButton.style.display = "none";
+            yayMessage.style.display = "block";
+            document.getElementById("shy").style.display = "none";
+            document.getElementById("question").style.display = "none";
+        });
     </script>
 </body>
-
 </html>
