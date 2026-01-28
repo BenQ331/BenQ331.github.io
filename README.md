@@ -1,2 +1,0 @@
-# BenQ331.github.io
-ZUZIAAAAAAAAA
