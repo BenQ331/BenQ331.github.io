@@ -36,25 +36,6 @@
         button:hover {
             background: #c71585;
         }
-        .date-selection {
-            display: none;
-            margin-top: 30px;
-        }
-        .date-selection h2 {
-            font-size: 2em;
-        }
-        .options {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .option {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            margin: 10px;
-            border-radius: 10px;
-            width: 200px;
-        }
         .hearts {
             position: absolute;
             top: 0;
@@ -98,17 +79,6 @@
                 font-size: 1em;
                 margin: 5px;
             }
-            .options {
-                flex-direction: column; /* Opcje w jednej kolumnie */
-                align-items: center;
-            }
-            .option {
-                width: 80%; /* Szerokość na całą szerokość */
-                max-width: 300px;
-            }
-            .date-selection h2 {
-                font-size: 1.5em;
-            }
         }
         @media (min-width: 769px) { /* Laptopy i większe */
             /* Wszystko jak domyślnie */
@@ -119,77 +89,22 @@
     <div class="hearts" id="hearts"></div>
     <h1>❤️ Hej, [Imię koleżanki]! ❤️</h1>
     <div class="question">Czy chcesz zostać moją walentynką?</div>
-    <button onclick="showDateSelection()">Tak! 💕</button>
+    <button onclick="showYes()">Tak! 💕</button>
     <button id="noButton" onclick="showNo()">Nie 😢</button>
     
-    <div id="date-selection" class="date-selection">
-        <h2>Świetnie! Wybierz datę naszego spotkania:</h2>
-        <div class="options">
-            <div class="option">
-                <h3>📅 9 lutego</h3>
-                <p>Początek tygodnia – idealny na romantyczny start!</p>
-                <button onclick="selectDate('9 lutego')">Wybierz</button>
-            </div>
-            <div class="option">
-                <h3>📅 10 lutego</h3>
-                <p>Środa – czas na coś wyjątkowego.</p>
-                <button onclick="selectDate('10 lutego')">Wybierz</button>
-            </div>
-            <div class="option">
-                <h3>📅 11 lutego</h3>
-                <p>Czwartek – blisko weekendu, pełen energii.</p>
-                <button onclick="selectDate('11 lutego')">Wybierz</button>
-            </div>
-            <div class="option">
-                <h3>📅 12 lutego</h3>
-                <p>Piątek – idealny na wieczór pełen wrażeń.</p>
-                <button onclick="selectDate('12 lutego')">Wybierz</button>
-            </div>
-            <div class="option">
-                <h3>📅 13 lutego</h3>
-                <p>Sobota – weekendowa magia!</p>
-                <button onclick="selectDate('13 lutego')">Wybierz</button>
-            </div>
-        </div>
-        <p id="selected"></p>
+    <div id="yes-message" style="display: none; margin-top: 30px; font-size: 1.5em;">
+        Napisz na instagramie to dogadamy kiedy mam przyjechac <3
     </div>
     
     <script>
-        function showDateSelection() {
-            document.getElementById('date-selection').style.display = 'block';
+        function showYes() {
+            document.getElementById('yes-message').style.display = 'block';
         }
         function showNo() {
             const button = document.getElementById('noButton');
-            // Runaway: Przesuń przycisk w losowe miejsce
             button.style.position = 'absolute';
             button.style.left = Math.random() * (window.innerWidth - 100) + 'px';
             button.style.top = Math.random() * (window.innerHeight - 50) + 'px';
-        }
-        async function selectDate(choice) {
-            const name = "[Imię koleżanki]"; // Możesz to zastąpić dynamicznym imieniem, jeśli masz formularz
-            document.getElementById('selected').innerText = `Wybrałaś: ${choice}. Nie mogę się doczekać naszego spotkania! ❤️`;
-            
-            // Wysyłanie danych do bazy danych przez POST
-            try {
-                const response = await fetch('/submit-date', { // Zmień na swój rzeczywisty endpoint, np. 'https://twoj-serwer.com/submit-date'
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        date: choice
-                    })
-                });
-                
-                if (response.ok) {
-                    document.getElementById('selected').innerText += ' Dane zostały wysłane! 🎉';
-                } else {
-                    alert('Błąd podczas wysyłania danych. Spróbuj ponownie.');
-                }
-            } catch (error) {
-                alert('Błąd połączenia: ' + error.message);
-            }
         }
         // Dodaj animowane serduszka lecące w górę
         function createHeart() {
